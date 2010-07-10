@@ -1,8 +1,8 @@
 # The following options can be changed by creating an initializer in config/initializers/jrails.rb
 
-# jRails uses jQuery.noConflict() by default
-# to use the default jQuery varibale, use:
-# ActionView::Helpers::PrototypeHelper::JQUERY_VAR = '$'
+# jRails does NOT use jQuery.noConflict() by default
+# to use jQuery.noConflict() , use:
+# ActionView::Helpers::PrototypeHelper::JQUERY_VAR = 'jQuery'
 
 
 JRails.load_config
