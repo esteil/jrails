@@ -15,7 +15,7 @@
 #
 module JRails
   module SelectorAssertions
-    def self.included?(base)
+    def self.included(base)
       self.constants.each do |cnst|
         if base.const_defined? cnst
           base.remove_const cnst
@@ -25,7 +25,7 @@ module JRails
 
     silence_warnings do
       RJS_PATTERN_HTML  = "\"((\\\\\"|[^\"])*)\""
-      RJS_ANY_ID      = "[\"']([^\"])*[\"']"
+      RJS_ANY_ID        = "[\"']([^\"])*[\"']"
 
       RJS_STATEMENTS   = {
         :chained_replace      => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.replaceWith\\(#{RJS_PATTERN_HTML}\\)",
