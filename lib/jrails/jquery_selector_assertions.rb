@@ -18,7 +18,7 @@ module JRails
     def self.included(base)
       self.constants.each do |cnst|
         if base.const_defined? cnst
-          base.remove_const cnst
+          base.send(:remove_const,cnst)
         end
       end
     end
