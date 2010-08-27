@@ -1,3 +1,5 @@
+require 'jrails/jquery_selector_assertions'
+
 module ActionView
   module Helpers
     
