@@ -12,25 +12,27 @@
 # We monkey-patch some RJS-matching constants for assert_select_rjs to work 
 # with jQuery-based code as opposed to Prototype's:
 #
-module ActionController
-   module Assertions
-      module SelectorAssertions
-         silence_warnings do
-            RJS_PATTERN_HTML  = "\"((\\\\\"|[^\"])*)\""
-#            RJS_ANY_ID      = "\"([^\"])*\""
-#	better match with single or double quoted ids
-            RJS_ANY_ID      = "[\"']([^\"])*[\"']"
-            
-            RJS_STATEMENTS   = {
-               :chained_replace      => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.replaceWith\\(#{RJS_PATTERN_HTML}\\)",
-               :chained_replace_html => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.updateWith\\(#{RJS_PATTERN_HTML}\\)",
-               :replace_html         => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.html\\(#{RJS_PATTERN_HTML}\\)",
-               :replace              => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.replaceWith\\(#{RJS_PATTERN_HTML}\\)",
-               :insert_top           => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.prepend\\(#{RJS_PATTERN_HTML}\\)",
-               :insert_bottom        => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.append\\(#{RJS_PATTERN_HTML}\\)",
-               :effect               => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.effect\\(",
-               :highlight            => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.effect\\('highlight'"
-               
+#
+module JRails
+  module AssertionContainer
+     module Assertions
+        module SelectorAssertions
+           silence_warnings do
+              RJS_PATTERN_HTML  = "\"((\\\\\"|[^\"])*)\""
+  #            RJS_ANY_ID      = "\"([^\"])*\""
+  #	better match with single or double quoted ids
+              RJS_ANY_ID      = "[\"']([^\"])*[\"']"
+              
+              RJS_STATEMENTS   = {
+                 :chained_replace      => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.replaceWith\\(#{RJS_PATTERN_HTML}\\)",
+                 :chained_replace_html => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.updateWith\\(#{RJS_PATTERN_HTML}\\)",
+                 :replace_html         => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.html\\(#{RJS_PATTERN_HTML}\\)",
+                 :replace              => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.replaceWith\\(#{RJS_PATTERN_HTML}\\)",
+                 :insert_top           => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.prepend\\(#{RJS_PATTERN_HTML}\\)",
+                 :insert_bottom        => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.append\\(#{RJS_PATTERN_HTML}\\)",
+                 :effect               => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.effect\\(",
+                 :highlight            => "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.effect\\('highlight'"
+                 
 =begin TODO: 
 
 I've never used the chained_* so I don't know if they work.
@@ -59,20 +61,32 @@ jrails now uses a nonconflict option so $ is jQuery.  I put both in the pattern 
               :insert_after => "",
               :insert_before => "",
 =end
-               
-            }
-            
-            [:remove, :show, :hide, :toggle, :reset ].each do |action|
-               RJS_STATEMENTS[action] = "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.#{action}\\(\\)"
-            end
-            
-            # TODO: 
-            #RJS_STATEMENTS[:insert_html] = "Element.insert\\(#{RJS_ANY_ID}, \\{ (#{RJS_INSERTIONS.join('|')}):            
-							#{RJS_PATTERN_HTML} \\}\\)"
-            
-            RJS_STATEMENTS[:any] = Regexp.new("(#{RJS_STATEMENTS.values.join('|')})")
-            RJS_PATTERN_UNICODE_ESCAPED_CHAR = /\\u([0-9a-zA-Z]{4})/
-         end
-      end
-   end
+                 
+              }
+              
+              [:remove, :show, :hide, :toggle, :reset ].each do |action|
+                 RJS_STATEMENTS[action] = "\(jQuery|$\)\\(#{RJS_ANY_ID}\\)\\.#{action}\\(\\)"
+              end
+              
+              # TODO: 
+              #RJS_STATEMENTS[:insert_html] = "Element.insert\\(#{RJS_ANY_ID}, \\{ (#{RJS_INSERTIONS.join('|')}):            
+                #{RJS_PATTERN_HTML} \\}\\)"
+              
+              RJS_STATEMENTS[:any] = Regexp.new("(#{RJS_STATEMENTS.values.join('|')})")
+              RJS_PATTERN_UNICODE_ESCAPED_CHAR = /\\u([0-9a-zA-Z]{4})/
+           end
+        end
+     end
+  end
 end
+
+if (defined? ActionController::Assertions) 
+  module ActionController
+    include JRails::AssertionContainer
+  end
+else
+  module ActionDispatch
+    include JRails::AssertionContainer
+  end
+end
+
