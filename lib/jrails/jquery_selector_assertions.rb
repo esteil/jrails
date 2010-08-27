@@ -13,7 +13,7 @@
 # with jQuery-based code as opposed to Prototype's:
 #
 #
-module JRails::SelectorAsserions
+module JRails
   module SelectorAssertions
     def self.included?(base)
       self.constants.each do |cnst|
@@ -49,12 +49,12 @@ module JRails::SelectorAsserions
 end
 
 if (defined? ActionController::Assertions) 
-  module ActionController
-    include JRails::AssertionContainer
+  module ActionController::Assertions::SelectorAssertions
+    include JRails::SelectorAssertions
   end
 else
-  module ActionDispatch
-    include JRails::AssertionContainer
+  module ActionDispatch::Assertions::SelectorAssertions
+    include JRails::SelectorAssertions
   end
 end
 
