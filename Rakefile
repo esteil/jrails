@@ -4,13 +4,12 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "jrails"
+    gem.name = "betamatt-jrails"
     gem.summary = "jRails is a drop-in jQuery replacement for the Rails Prototype/script.aculo.us helpers."
     gem.description = "Using jRails, you can get all of the same default Rails helpers for javascript functionality using the lighter jQuery library."
     gem.email = "aaronchi@gmail.com"
-    gem.homepage = "http://ennerchi.com/projects/jrails"
+    gem.homepage = "http://github.com/betamatt/jrails"
     gem.authors = ["Aaron Eisenberger", "Patrick Hurley"]
-    gem.rubyforge_project = "jrails"
     gem.files =  FileList["[A-Z]*.rb","{bin,javascripts,lib,rails,tasks}/**/*"]
   end
   Jeweler::GemcutterTasks.new
