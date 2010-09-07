@@ -10,7 +10,7 @@ begin
     gem.email = "aaronchi@gmail.com"
     gem.homepage = "http://github.com/betamatt/jrails"
     gem.authors = ["Aaron Eisenberger", "Patrick Hurley"]
-    gem.files =  FileList["[A-Z]*.rb","{bin,javascripts,lib,rails,tasks}/**/*"]
+    gem.files =  FileList["[A-Z]*.rb","{bin,generators,javascripts,lib,rails,tasks}/**/*"]
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

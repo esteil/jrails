@@ -20,6 +20,16 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     "bin/jrails",
+     "generators/jrails/jrails_generator.rb",
+     "generators/jrails/templates/config/jrails.yml",
+     "generators/jrails/templates/public/javascripts/jquery-ui-i18n.js",
+     "generators/jrails/templates/public/javascripts/jquery-ui-i18n.min.js",
+     "generators/jrails/templates/public/javascripts/jquery-ui.js",
+     "generators/jrails/templates/public/javascripts/jquery-ui.min.js",
+     "generators/jrails/templates/public/javascripts/jquery.js",
+     "generators/jrails/templates/public/javascripts/jquery.min.js",
+     "generators/jrails/templates/public/javascripts/jrails.js",
+     "generators/jrails/templates/public/javascripts/jrails.min.js",
      "lib/asset_tag_ext.rb",
      "lib/jquery_selector_assertions.rb",
      "lib/jrails.rb",
