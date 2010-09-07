@@ -11,6 +11,8 @@ begin
     gem.homepage = "http://github.com/betamatt/jrails"
     gem.authors = ["Aaron Eisenberger", "Patrick Hurley"]
     gem.files =  FileList["[A-Z]*.rb","{bin,generators,javascripts,lib,rails,tasks}/**/*"]
+    
+    gem.add_dependency 'rails', '~> 2.3.0'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
