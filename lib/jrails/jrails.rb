@@ -7,7 +7,7 @@ class JRails
   }
 
   def self.load_config
-    config_file = File.join(Rails.root, "config", "jrails.yml")
+    config_file = File.join("./", "config", "jrails.yml")
     if File.exist? config_file
       loaded_config = YAML.load_file(config_file) 
       if loaded_config and loaded_config.key? Rails.env
