@@ -20,10 +20,12 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     "bin/jrails",
-     "javascripts/jquery-ui.js",
-     "javascripts/jquery.js",
-     "javascripts/jrails.js",
-     "javascripts/sources/jrails.js",
+     "javascripts/jquery/jquery-ui.js",
+     "javascripts/jquery/jquery-ui.min.js",
+     "javascripts/jquery/jquery.js",
+     "javascripts/jquery/jquery.min.js",
+     "javascripts/jrails/jrails.js",
+     "javascripts/jrails/jrails.min.js",
      "lib/jrails.rb",
      "lib/jrails/jquery_selector_assertions.rb",
      "rails/init.rb",

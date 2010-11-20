@@ -8,9 +8,9 @@
 JRails.load_config
 
 if JRails.google?
-  ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jrails => ["jrails#{".min" if JRails.compressed?}"]
+  ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jrails => ["jrails/jrails#{".min" if JRails.compressed?}"]
 else
-  ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jrails => ["jquery#{".min" if JRails.compressed?}","jquery-ui#{".min" if JRails.compressed?}","jquery-ui-i18n#{".min" if JRails.compressed?}","jrails#{".min" if JRails.compressed?}"]
+  ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jrails => ["jquery/jquery#{".min" if JRails.compressed?}","jquery/jquery-ui#{".min" if JRails.compressed?}","jquery/jquery-ui-i18n#{".min" if JRails.compressed?}","jrails/jrails#{".min" if JRails.compressed?}"]
 end
 
 
