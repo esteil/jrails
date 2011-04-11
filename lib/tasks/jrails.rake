@@ -1,13 +1,13 @@
 namespace :jrails do
 
-	namespace :js do
-		desc "deprecated. Please use ./script/generator jrails"
+	namespace :assets do
+		desc "Install javascript and css files for jquery and jqueryui"
 		task :install do
-			#puts "Copying files..."
-			#project_dir = RAILS_ROOT + '/public/javascripts/'
-			#scripts = Dir[File.join(File.dirname(__FILE__), '..', '/javascripts/', '*.js')]
-			#FileUtils.cp(scripts, project_dir)
-			puts "please use ./script/generator jrails"
+			puts "Copying files..."
+			project_dir = RAILS_ROOT + '/public/'
+			plugin_assets_dir = File.join(File.dirname(__FILE__), '../..', 'assets/.')
+			FileUtils.cp_r plugin_assets_dir, project_dir
+			puts "files install succesfully"
 		end
 
     desc 'Remove the prototype / script.aculo.us javascript files'
