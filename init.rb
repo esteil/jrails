@@ -1,1 +1,3 @@
-# Include hook code here
+$: << File.expand_path("..", __FILE__)
+
+require "lib/jrails"
